@@ -133,7 +133,7 @@ public class MainFrame extends JFrame {
 
     private void displayProducts(ArrayList<Product> productList) {
         for (Product p : productList) {
-            this.resultArea.append(p.toString());
+            this.resultArea.append(p.toString() + "\n");
         }
         // TODO display the products
     }
