@@ -95,9 +95,9 @@ public class MainFrame extends JFrame {
         menuItem1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO enable this when null pointer is solved
-//                displayProducts(controller.getProducts());
-                inputArea.append(e.getActionCommand());
+//                TODO enable this when null pointer is solved
+                displayProducts(controller.getProducts());
+//                inputArea.append(e.getActionCommand());
             }
         });
         mainMenu.add(menuItem1);
@@ -132,8 +132,7 @@ public class MainFrame extends JFrame {
     }
 
     private void displayProducts(ArrayList<Product> productList) {
-        for (Product p :
-                productList) {
+        for (Product p : productList) {
             this.resultArea.append(p.toString());
         }
         // TODO display the products

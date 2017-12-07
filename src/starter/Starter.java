@@ -1,8 +1,12 @@
 package starter;
 
+import controller.Controller;
+import view.MainFrame;
+
 public class Starter {
 
     public static void main(String[] args) {
-        new view.MainFrame("spelRVI databse");
+        MainFrame frame = new MainFrame("spelRVI databse");
+        Controller controller = new Controller(frame);
     }
 }
