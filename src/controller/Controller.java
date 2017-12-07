@@ -20,6 +20,6 @@ public class Controller {
         for (int i = 0; i < 10; i++) {
             alp.add(new Product("Product " + i));
         }
-        return null;
+        return alp;
     }
 }
