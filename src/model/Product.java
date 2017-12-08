@@ -8,8 +8,6 @@ public class Product {
         this.name = name;
     }
 
-    //TODO DO THIS GUISE
-
     @Override
     public String toString() {
         return this.name;

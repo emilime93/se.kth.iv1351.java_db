@@ -1,5 +1,6 @@
 package integration;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 //How to connect, use in other layer.
@@ -12,7 +13,7 @@ public class DatabaseHandler {
     private static final String MYSQL_USERNAME = "root";
     private static final String MYSQL_PASSWORD = "tidabmajs";
 
-    public static void displayQuery(Connection con, String dbName)
+    public static ArrayList<String> getAllProductsByName(Connection con, String dbName)
             throws SQLException, ClassNotFoundException {
         //Load MySQL driver
         String driver = "com.mysql.jdbc.Driver";
@@ -22,16 +23,19 @@ public class DatabaseHandler {
         String query = "SELECT namn\n" +
                 "FROM Produkt, Spel\n" +
                 "WHERE Produkt.spel_ID = Spel.spelID;\n";
+
+        ArrayList<String> result = new ArrayList<>();
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                String beskrivning = rs.getString("namn");
-                System.out.println(beskrivning + "\t");
+                result.add(rs.getString("namn"));
             }
         }finally {
             if (stmt != null) { stmt.close(); }
         }
+
+        return result;
     }
 
     public static Connection getConnection() throws SQLException {
@@ -44,7 +48,6 @@ public class DatabaseHandler {
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/SpelRsi",
                 connectionProps);
-        System.out.println("Connected to database");
         return con;
     }
     
