@@ -1,4 +1,5 @@
-# se.kth.iv1351.java_db
+# SQL through Java app
+## se.kth.iv1351.java_db
 Grupp 12s java app för att hantera en SQL databas.
 
 ## Den här applikationen ska kunna:
