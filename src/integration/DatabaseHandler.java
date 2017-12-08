@@ -4,10 +4,14 @@ import java.util.Properties;
 
 //How to connect, use in other layer.
 //Connection con = getConnection();
-//viewTable(con, "SpelRsi");
+//displayQuery(con, "SpelRsi");
 
 
 public class DatabaseHandler {
+
+    private static final String MYSQL_USERNAME = "root";
+    private static final String MYSQL_PASSWORD = "tidabmajs";
+
     public static void displayQuery(Connection con, String dbName)
             throws SQLException, ClassNotFoundException {
         //Load MySQL driver
@@ -34,8 +38,8 @@ public class DatabaseHandler {
 
         Connection con = null;
         Properties connectionProps = new Properties();
-        connectionProps.put("user", "root");
-        connectionProps.put("password", "Nicock");
+        connectionProps.put("user", MYSQL_USERNAME);
+        connectionProps.put("password", MYSQL_PASSWORD);
 
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/SpelRsi",
