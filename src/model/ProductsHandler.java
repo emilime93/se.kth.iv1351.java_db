@@ -21,19 +21,14 @@ public class ProductsHandler {
     }
 
     private void updateProducts() {
-        ArrayList<String> productNames = new ArrayList<>();
+//        products.clear();
         try {
-            productNames = database.getAllProductsByName(DatabaseHandler.getConnection(), "spelRVI");
+            products = database.getAllProducts(DatabaseHandler.getConnection(), "spelRVI");
         } catch (SQLException e) {
             System.out.println("Database connection failed");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-
-        products.clear();
-        for (String name : productNames) {
-            products.add(new Product(name));
         }
     }
 }
