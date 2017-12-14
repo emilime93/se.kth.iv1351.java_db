@@ -5,9 +5,9 @@ public class Product {
     private String name;
     private String platform;
 
-    public Product(String name, String plattform) {
+    public Product(String name, String platform) {
         this.name = name;
-        this.platform = plattform;
+        this.platform = platform;
     }
 
     public Product(String name) {

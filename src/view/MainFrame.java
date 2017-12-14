@@ -102,11 +102,11 @@ public class MainFrame extends JFrame {
         });
         mainMenu.add(menuItem1);
 
-        JMenuItem menuItem2 = new JMenuItem("Item 2");
+        JMenuItem menuItem2 = new JMenuItem("Lägg till bevakning");
         menuItem2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inputArea.append(e.getActionCommand());
+                new MonitorStockDialog("Lägg till bevakning");
             }
         });
         mainMenu.add(menuItem2);
