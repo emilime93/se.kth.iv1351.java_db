@@ -22,9 +22,7 @@ public class DatabaseHandler {
         Class.forName(driver);
 
         Statement stmt = null;
-        String query = "SELECT namn, plattform\n" +
-                "FROM Produkt, Spel\n" +
-                "WHERE Produkt.spel_ID = Spel.spelID;\n";
+        String query = "SELECT namn, plattform FROM Produkt, Spel WHERE Produkt.spel_ID = Spel.spelID;";
 
         ArrayList<Product> result = new ArrayList<>();
         try {
@@ -33,7 +31,10 @@ public class DatabaseHandler {
             while (rs.next()) {
                 result.add(new Product(rs.getString("namn"), rs.getString("plattform")));
             }
-        }finally {
+        } catch (SQLException sqle) {
+            System.out.println("SQL Connection error Error: ");
+            sqle.printStackTrace();
+        } finally {
             if (stmt != null) { stmt.close(); }
         }
 
