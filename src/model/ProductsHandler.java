@@ -23,7 +23,7 @@ public class ProductsHandler {
     private void updateProducts() {
 //        products.clear();
         try {
-            products = database.getAllProducts(DatabaseHandler.getConnection(), "spelRVI");
+            products = database.getAllProducts(DatabaseHandler.getConnection());
         } catch (SQLException e) {
             System.out.println("Database connection failed");
             e.printStackTrace();

@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements View {
 
     // TODO Set the controller before I create the menu, otherwise null-pointer
 
@@ -140,5 +140,10 @@ public class MainFrame extends JFrame {
 
     public void setController(Controller controller) {
         this.controller = controller;
+    }
+
+    @Override
+    public void runProgram() {
+        // TODO
     }
 }

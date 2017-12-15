@@ -15,7 +15,7 @@ public class DatabaseHandler {
     private static final String MYSQL_USERNAME = "root";
     private static final String MYSQL_PASSWORD = "tidabmajs";
 
-    public static ArrayList<Product> getAllProducts(Connection con, String dbName)
+    public static ArrayList<Product> getAllProducts(Connection con)
             throws SQLException, ClassNotFoundException {
         //Load MySQL driver
         String driver = "com.mysql.jdbc.Driver";
