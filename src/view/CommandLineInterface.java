@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import model.Product;
+import model.Store;
 
 import java.util.Scanner;
 
@@ -43,13 +44,27 @@ public class CommandLineInterface implements View {
     }
 
     private void showStoresWithoutStock() {
-        System.out.println("showStoresWithoutStock");
+        System.out.println("Du har valt att lista butiker som INTE har en produkt i lager.");
+        String name;
+        String platform;
+        do {
+            Scanner scannerIn = new Scanner(System.in);
+            System.out.print("Vilket produktnamn gäller det?: ");
+            name = scannerIn.nextLine();
+            System.out.print("Vilken plattform gäller det?: ");
+            platform = scannerIn.nextLine();
+        } while (false);
+        // TODO Add real validation above ^
+
+        for (Store store : controller.getStoresWithoutStock(name, platform)) {
+            System.out.println("- " + store);
+        }
     }
 
     private void displayAllProducts() {
         System.out.println("----- PRODUCTS -----");
         for (Product p : controller.getProducts()) {
-            System.out.println(p.toString());
+            System.out.println("- " + p);
         }
     }
 

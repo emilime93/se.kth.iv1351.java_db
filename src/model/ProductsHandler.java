@@ -12,7 +12,7 @@ public class ProductsHandler {
 
     public ProductsHandler() {
         products = new ArrayList<>();
-        database = new DatabaseHandler();
+        database = DatabaseHandler.getDatabaseHandler();
     }
 
     public ArrayList<Product> getProducts() {
@@ -20,14 +20,15 @@ public class ProductsHandler {
         return products;
     }
 
+    /**
+     * Unsure if I should handle the exception like this or not.
+     */
     private void updateProducts() {
-//        products.clear();
         try {
-            products = database.getAllProducts(DatabaseHandler.getConnection());
+            products = database.getAllProducts();
         } catch (SQLException e) {
-            System.out.println("Database connection failed");
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            products = new ArrayList<>();
+            products.add(new Product("No products found"));
             e.printStackTrace();
         }
     }
