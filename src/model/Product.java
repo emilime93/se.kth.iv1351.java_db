@@ -14,6 +14,14 @@ public class Product {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
     @Override
     public String toString() {
         String strRep = String.format("%s för %s", name, platform);

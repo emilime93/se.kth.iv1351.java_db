@@ -1,4 +1,9 @@
 package view;
 
-public class ProductsList {
+import javax.swing.*;
+
+public class ProductsList extends JPanel {
+
+    public ProductsList() {
+    }
 }
