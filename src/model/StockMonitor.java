@@ -2,25 +2,26 @@ package model;
 
 public class StockMonitor {
 
-    private int storeID;
-    private int productBarcode;
     private String email;
+    private String storeID;
+    private String productBarcode;
 
-    public StockMonitor(int storeID, int productBarcode, String email) {
+    public StockMonitor(String email, String storeID, String productBarcode) {
+        this.email = email;
         this.storeID = storeID;
         this.productBarcode = productBarcode;
-        this.email = email;
-    }
-
-    public int getStoreID() {
-        return storeID;
-    }
-
-    public int getProductBarcode() {
-        return productBarcode;
     }
 
     public String getEmail() {
         return email;
     }
+
+    public String getStoreID() {
+        return storeID;
+    }
+
+    public String getProductBarcode() {
+        return productBarcode;
+    }
 }
+

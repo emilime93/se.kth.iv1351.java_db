@@ -1,5 +1,6 @@
 package integration;
 import model.Product;
+import model.StockMonitor;
 import model.Store;
 
 import java.sql.*;
@@ -70,7 +71,7 @@ public class DatabaseHandler {
         String nameParam  = product.getName();
         String platformParam= product.getPlatform();
 
-        String query = "SELECT gatuaddress, postNR, stad FROM Butik\n" +
+        String query = "SELECT butiksID, gatuadress, postNR, stad FROM Butik\n" +
                 "WHERE butiksID NOT IN(\n" +
                 "SELECT butiksID\n" +
                 "FROM Butik, Produktlagersaldo, Produkt, Spel\n" +
@@ -87,10 +88,59 @@ public class DatabaseHandler {
         result = statement.executeQuery();
 
         while (result.next()) {
-            storeList.add(new Store(result.getString("gatuaddress"), result.getString("stad"), result.getString("postNR")));
+            storeList.add(new Store(result.getString("gatuadress"), result.getString("stad"), result.getString("postNR"), result.getString("butiksID")));
         }
         statement.close();
         return storeList;
+    }
+
+    public String getProductId(Product product) throws SQLException {
+        ResultSet result;
+        PreparedStatement statement;
+
+        String query = "SELECT streckkod " +
+                "FROM Produkt, Spel " +
+                "WHERE plattform = ? " +
+                "AND namn = ?;";
+        statement = connection.prepareStatement(query);
+        statement.setString(1, product.getPlatform());
+        statement.setString(2, product.getName());
+
+        result = statement.executeQuery();
+
+        String resultId = null;
+
+        while (result.next()) {
+            resultId = result.getString("streckkod");
+        }
+
+        return resultId;
+    }
+
+    public boolean addStockMonitor(StockMonitor stockMonitor) throws SQLException {
+        ResultSet result;
+        PreparedStatement statement;
+
+        ArrayList<Store> storeList = new ArrayList<>();
+
+        String epostParam = stockMonitor.getEmail();
+        String butikIDParam = stockMonitor.getStoreID();
+        String produktParam = stockMonitor.getProductBarcode();
+
+        String query = "INSERT INTO Bevakning (epost, butik_ID, produkt) " +
+                "VALUES (?, ?, ?);";
+
+        statement = connection.prepareStatement(query);
+        statement.setString(1, epostParam);
+        statement.setString(2, butikIDParam);
+        statement.setString(3, produktParam);
+
+        statement.executeUpdate();
+
+        statement.close();
+
+        // TODO Update me
+        return true;
     }
     
 }

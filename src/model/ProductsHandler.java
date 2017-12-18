@@ -32,4 +32,13 @@ public class ProductsHandler {
             e.printStackTrace();
         }
     }
+
+    public String getProductId(Product product) {
+        try {
+            return database.getProductId(product);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

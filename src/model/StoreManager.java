@@ -20,7 +20,7 @@ public class StoreManager {
             stores = database.getStoresWithNoStock(product);
         } catch (SQLException e) {
             stores = new ArrayList<>();
-            stores.add(new Store("No stores found", null, null));
+            stores.add(new Store("No stores found", null, null, null));
             e.printStackTrace();
         }
         return stores;
