@@ -21,6 +21,10 @@ public class Controller {
         frame.runProgram();
     }
 
+    public ArrayList<String> getPlatformsForGame(String gameName) {
+        return productsHandler.getPlatformsForGame(gameName);
+    }
+
     public ArrayList<Product> getProducts() {
         return productsHandler.getProducts();
     }
@@ -33,8 +37,8 @@ public class Controller {
         return storeManager.getStoresWithoutStock(product);
     }
 
-    public boolean addStockMonitor(Store store, Product product) {
+    public void addStockMonitor(Store store, Product product) {
         StockMonitor stockMonitor = new StockMonitor(USER_EMAIL, store.getStoreID(), product.getBarcode());
-        return stockMonitorManager.addStockMonitor(stockMonitor);
+        stockMonitorManager.addStockMonitor(stockMonitor);
     }
 }

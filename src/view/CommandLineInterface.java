@@ -48,12 +48,18 @@ public class CommandLineInterface implements View {
 
         System.out.print("Ange spelnamn: ");
         gameName = scannerIn.nextLine();
-        System.out.print("Ange plattform: ");
-        gamePlatform = scannerIn.nextLine();
-        Product product = new Product(gameName, gamePlatform, controller.getProductId(new Product(gameName, gamePlatform)));
-        if (product == null) {
-            System.out.println("FEL, fanns ingen sån produkt");
+        ArrayList<String> platforms = controller.getPlatformsForGame(gameName);
+        if (platforms.size() == 0) {
+            System.out.println("No such game.");
+            return;
         }
+        System.out.println("Vilken plattform? ");
+        for (int i = 0; i < platforms.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, platforms.get(i));
+        }
+        gamePlatform = platforms.get(scannerIn.nextInt() - 1);
+
+        Product product = new Product(gameName, gamePlatform, controller.getProductId(new Product(gameName, gamePlatform)));
         Store store;
         do {
             System.out.println("Vilken butik vill du lägga din bevakning i?");
@@ -62,15 +68,11 @@ public class CommandLineInterface implements View {
                 System.out.printf("%d. %s %s %s\n", i+1, stores.get(i).getAddress(), stores.get(i).getPostalCode(),
                         stores.get(i).getCity());
             }
-            store = new Store(stores.get(scannerIn.nextInt()-1));
+            store = new Store(stores.get(scannerIn.nextInt() - 1));
         } while (false);
         // TODO Real validation
 
-        if (controller.addStockMonitor(store, product)) {
-            System.out.println("Bevakningen lades till.");
-        } else {
-            System.out.println("Bevakningen misslyckades.");
-        }
+        controller.addStockMonitor(store, product);
     }
 
     private void showStoresWithoutStock() {
