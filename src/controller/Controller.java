@@ -1,7 +1,6 @@
 package controller;
 
 import model.*;
-import view.MainFrame;
 import view.View;
 
 import java.util.ArrayList;

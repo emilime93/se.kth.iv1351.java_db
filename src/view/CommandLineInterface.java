@@ -67,9 +67,9 @@ public class CommandLineInterface implements View {
         // TODO Real validation
 
         if (controller.addStockMonitor(store, product)) {
-            System.out.println("Success");
+            System.out.println("Bevakningen lades till.");
         } else {
-            System.out.println("fail");
+            System.out.println("Bevakningen misslyckades.");
         }
     }
 
