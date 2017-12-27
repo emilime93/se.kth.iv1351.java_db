@@ -41,4 +41,14 @@ public class ProductsHandler {
             return null;
         }
     }
+
+    public ArrayList<String> getPlatformsForGame(String gameName) {
+        try {
+            return database.getPlatformsForGame(gameName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

@@ -142,5 +142,23 @@ public class DatabaseHandler {
         // TODO Update me
         return true;
     }
-    
+
+    public ArrayList<String> getPlatformsForGame(String gameName) throws SQLException {
+        PreparedStatement stmt;
+        String query = "SELECT plattform FROM Produkt WHERE Produkt.spel_ID = (SELECT spelID FROM spel WHERE namn = ?);";
+
+        ArrayList<String> result = new ArrayList<>();
+
+        stmt = connection.prepareStatement(query);
+        stmt.setString(1, gameName);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            result.add(rs.getString("plattform"));
+        }
+        stmt.close();
+
+        return result;
+    }
 }
